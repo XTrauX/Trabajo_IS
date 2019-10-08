@@ -34,6 +34,8 @@
     + Fecha de nacimiento
     + Teléfono de contacto
     + Seguro de salud
+    + Tratamiento actual
+    + Enfermedad actual
 
   - **Cita:**
 
