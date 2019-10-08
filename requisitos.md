@@ -1,6 +1,7 @@
 # **Requisitos**
 ## **Requisitos funcionales:**
 
+  - Buscar un paciente por apellido.
   - Consultar un paciente.
   - Consultar cita/s diarias.
   - Consultar cita/s de un paciente.
