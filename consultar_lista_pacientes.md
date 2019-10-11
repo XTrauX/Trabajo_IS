@@ -1,4 +1,4 @@
-# **Consultar tratamientos de un paciente**
+# **Consultar lista de pacientes**
 **ID:** 07 **Descripción:** Se muestra una lista con todos los pacientes.
 
 **Actores principales:** Secretario.    **Actores secundarios:** Ninguno.
