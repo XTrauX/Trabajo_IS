@@ -2,7 +2,7 @@
 
 **Prioridad** (de 1 a 5): 5 **Puntos estimado:** 2 **Iteración:** 1
 
-**Responsable:**
+**Responsable:** Tomás Marín Sanz
 
 **Descripción**
 
@@ -21,7 +21,7 @@ Como *secretario* quiero *buscar a un paciente* para *poder consultar su informa
 
 **Prioridad** (de 1 a 5): 5 **Puntos estimado:** 1 **Iteración:** 3
 
-**Responsable:**
+**Responsable:** Tomás Marín Sanz
 
 **Descripción**
 
@@ -39,7 +39,7 @@ Como *secretario* quiero *consultar los datos de un paciente* para *conseguir in
 
 **Prioridad** (de 1 a 5): 5 **Puntos estimado:** 2 **Iteración:** 1
 
-**Responsable:**
+**Responsable:** Carlos Revuelto Quero
 
 **Descripción**
 
@@ -58,7 +58,7 @@ Como *secretario* quiero *consultar las citas que tengo hoy* para *saber que ten
 
 **Prioridad** (de 1 a 5): 4 **Puntos estimado:** 1 **Iteración:** 2
 
-**Responsable:**
+**Responsable:** Carlos Revuelto Quero
 
 **Descripción**
 
@@ -77,7 +77,7 @@ Como *secretario* quiero *consultar las citas que tiene un paciente* para *obten
 
 **Prioridad** (de 1 a 5): 3 **Puntos estimado:** 1 **Iteración:** 2
 
-**Responsable:**
+**Responsable:** Tomás Marín Sanz
 
 **Descripción**
 
@@ -94,7 +94,7 @@ Como *secretario* quiero *consultar el historial médico de un paciente* para *c
 
 **Prioridad** (de 1 a 5): 3 **Puntos estimado:** 1 **Iteración:** 2
 
-**Responsable:**
+**Responsable:** Carlos Revuelto Quero
 
 **Descripción**
 
@@ -109,9 +109,9 @@ Como *secretario* quiero *consultar los tratamientos de un paciente* para *obten
 
 **ID** 07 **Nombre:** Consultar lista de pacientes
 
-**Prioridad** (de 1 a 5): 1 **Puntos estimado:** 2 **Iteración** 1
+**Prioridad** (de 1 a 5): 1 **Puntos estimado:** 1 **Iteración** 1
 
-**Responsable:**
+**Responsable:** Luis Revuelto Martínez
 
 **Descripción**
 
@@ -130,7 +130,7 @@ Como *secretario* quiero *consultar todos los pacientes que tengo* para *obtener
 
 **Prioridad** (de 1 a 5): 3 **Puntos estimado:** 2 **Iteración** 1
 
-**Responsable:**
+**Responsable:** Luis Revuelto Martínez
 
 **Descripción**
 
@@ -148,7 +148,7 @@ Como *secretario* quiero *añadir un historial médico a un paciente* para *actu
 
 **Prioridad** (de 1 a 5): 4 **Puntos estimado:** 2 **Iteración** 1
 
-**Responsable:**
+**Responsable:** Tomás Marín Sanz
 
 **Descripción**
 
@@ -166,7 +166,7 @@ Como *secretario* quiero *anotar una cita de un paciente* para *saber cuando ten
 
 **Prioridad** (de 1 a 5): 5 **Puntos estimado:** 2 **Iteración** 1
 
-**Responsable:**
+**Responsable:** Tomás Marín Sanz
 
 **Descripción**
 
@@ -184,7 +184,7 @@ Como *secretario* quiero *anotar a un nuevo paciente* para *tenerlo guardado en 
 
 **Prioridad** (de 1 a 5): 3 **Puntos estimado:** 2 **Iteración** 1
 
-**Responsable:**
+**Responsable:** Luis Revuelto Martínez
 
 **Descripción**
 
@@ -201,7 +201,7 @@ Como *secretario* quiero *añadirle  un tratamiento a un paciente* para *tratar 
 
 **Prioridad** (de 1 a 5): 4 **Puntos estimado:** 2 **Iteración** 1
 
-**Responsable:**
+**Responsable:** Carlos Revuelto Quero
 
 **Descripción**
 
@@ -218,7 +218,7 @@ Como *secretario* quiero *modificar o eliminar una cita con un paciente* para *c
 
 **Prioridad** (de 1 a 5): 1 **Puntos estimado:** 3 **Iteración** 2
 
-**Responsable:**
+**Responsable:** Luis Revuelto Martínez
 
 **Descripción**
 
@@ -236,7 +236,7 @@ Como *secretario* quiero *modificar o eliminar los datos de un paciente de mi si
 
 **Prioridad** (de 1 a 5): 3 **Puntos estimado:** 2 **Iteración** 1
 
-**Responsable:**
+**Responsable:** Carlos Revuelto Quero
 
 **Descripción**
 
