@@ -4,7 +4,8 @@
 **Actores principales:** Secretario.    **Actores secundarios:** Ninguno.
 
 **Precondiciones:**
-- Acceder a los tratamientos a través de un paciente.
+- Existir el paciente.
+- Existir el tratamiento.
 
 **Flujo principal:**
 1. El secretario desea modificar o borrar un tratamiento.

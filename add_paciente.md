@@ -4,7 +4,7 @@
 **Actores principales:** Secretario.    **Actores secundarios:** Ninguno.
 
 **Precondiciones:**
-- Ninguna.
+- No haber una persona con ese nombre.
 
 **Flujo principal:**
 1. El secretario desea añadir un nuevo paciente.

@@ -4,7 +4,7 @@
 **Actores principales:** Secretario.    **Actores secundarios:** Ninguno.
 
 **Precondiciones:**
-- Acceder al paciente a través de buscar por apellido o consultar lista de pacientes.
+- Existir el paciente.
 
 **Flujo principal:**
 1. El secretario desea consultar los datos de un paciente.
