@@ -4,7 +4,8 @@
 **Actores principales:** Secretario.    **Actores secundarios:** Ninguno.
 
 **Precondiciones:**
-- Acceder al paciente a través de consultar un paciente o lista de pacientes.
+- Existir el paciente.
+- No haber una cita en ese horario.
 
 **Flujo principal:**
 1. El secretario desea añadir una nueva cita.
