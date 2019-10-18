@@ -1,6 +1,8 @@
 # **Requisitos**
 ## **Requisitos funcionales:**
 
+  - Buscar un paciente.
+  - Buscar un paciente por nombre.
   - Buscar un paciente por apellido.
   - Consultar un paciente.
   - Consultar cita/s diarias.
@@ -12,17 +14,21 @@
   - Añadir cita.
   - Añadir paciente.
   - Añadir tratamiento médico.
-  - Modificar cita.
-  - Modificar paciente.
-  - Modificar tratamiento.
+  - Modificar/Cancelar cita.
+  - Modificar/Eliminar paciente.
+  - Modificar/Eliminar tratamiento.
 
 ## **Requisitos no funcionales**
 
   - Preferiblemente que la aplicación software tenga una interfaz de ventana.
-  - No borrar historial de clientes cuando dejen de venir.
+  - No borrar el historial de clientes cuando dejen de venir.
+  - No modificar el historial médico de los clientes.
+  - Preguntar si está seguro de añadir un historial médico.
+  - Preguntar si está seguro de borrar algo antes de eliminarlo.
+  - Es importante que las citas no se solapen.
   - Primero en aparecer al iniciar la aplicación software que sean las citas del día.
+  - Tiene que funcionar en un sistema operativo Linux.
   - Pacientes mostrados por orden alfabético.
-  - Los principales interesados son la doctora  y el secretario.
 
 ## **Campos de los datos**
 
