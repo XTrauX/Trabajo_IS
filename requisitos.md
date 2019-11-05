@@ -52,9 +52,14 @@
 
   - **Historial médico:**
 
-    + Enfermedades
-    + Síntomas
-    + Causas de la cita
+    + Id
+    + Fecha de alta
+
+  - **Linea del historial médico:**
+
+    + Numero de línea
+    + Comentario
+    + Fecha
 
   - **Tratamiento:**
 
