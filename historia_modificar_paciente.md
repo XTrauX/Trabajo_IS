@@ -12,5 +12,5 @@ Como *secretario* quiero *modificar o eliminar los datos de un paciente de mi si
 
 - Se deberá poder realizar con cualquier paciente.
 - No se podrá modificar el nombre de un paciente a otro ya existente en el sistema.
-- Se deberán borrar todos los datos en relación con ese paciente en caso de decidir eliminarlo.
+- Se deberán borrar todos los datos en relación con ese paciente en caso de decidir eliminarlo a excepción de su historial médico.
 - Se deberá preguntar si se está seguro de la acción en caso de eliminar un paciente.
