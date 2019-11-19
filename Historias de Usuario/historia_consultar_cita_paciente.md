@@ -2,7 +2,7 @@
 
 **Prioridad** (de 1 a 5): 4 **Puntos estimado:** 1 **Iteración:** 2
 
-**Responsable:** Carlos Revuelto Quero
+**Responsable:** Luis Revuelto Martínez
 
 **Descripción**
 
