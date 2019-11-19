@@ -2,7 +2,7 @@
 
 **Prioridad** (de 1 a 5): 1 **Puntos estimado:** 3 **Iteración** 2
 
-**Responsable:** Luis Revuelto Martínez
+**Responsable:** Tomás Marín Sanz
 
 **Descripción**
 
