@@ -8,14 +8,14 @@
 using namespace std;
 class Linea{
 
-	private: 
+	private:
 		int num_linea_;
 		string comentario_, fecha_;
 
 	public:
 		inline Linea(int num_linea,string comentario="", string fecha="00/00/0000") {num_linea_=num_linea; comentario_=comentario; fecha_=fecha;};
 		inline int getNumeroLinea() const {return num_linea_;};
-		inline string getComentario() const {return comentario_;}; 
+		inline string getComentario() const {return comentario_;};
 		inline string getFecha() const {return fecha_;};
 		inline void setNumeroLista(int num_linea){num_linea_=num_linea;}; //pensar para hablarlo con MasterScrum
 		inline void setComentario(string comentario) {comentario_=comentario;};

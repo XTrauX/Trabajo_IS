@@ -5,8 +5,12 @@
 #include <list>
 #include <string>
 #include <ctime>
+#include <fstream>
+#include <iostream>
 
-bool Historial::setFechaAlta(string fecha_alta){
+using namespace std;
+
+bool Historial::setFechaAlta(){
 
 	fecha_alta_=getSysFecha();
 	return true;
@@ -15,27 +19,15 @@ bool Historial::setFechaAlta(string fecha_alta){
 bool Historial::addLinea(Linea linea, string nombre, string apellidos){
 
 	string fichero= nombre+apellidos + ".txt";
-	list <Linea> ::iterator i;
-	bool anadir true;
-	for(i=Linea.begin(); i!=Linea.end(); ++i){
+	
+	Linea_Historial_.push_back(linea);
 
+	
 
-		if(linea.num_linea_==(*i).getNumeroLinea()){
-
-			anadir false;
-		}
-
-			
-	}
-
-	if(anadir) Linea.push_back(linea);
-
-	ifstream entrada(fichero);
-
-	if(entrada.is_open()) return false;
+	if(ifstream (fichero)) return false;
 	else{
-		ofstream entrada(fichero);
-	    entrada.close();
+		ofstream (fichero);
+	    fichero.close();
 	    return true;
 	}
 
@@ -48,9 +40,9 @@ bool Historial::LoadLinea(string fichero){
 	Linea a(0,"XXXX","XXXX");
 	Linea_Historial_.clear();
 	//comprobamos si existe el fichero
-	if(entrada.is_open()) return false;
-	//abrimos el fichero en modo lectura
-	ifstream entrada(fichero);
+	if(ifstream(fichero)) return false;
+
+	ifstream entrada (fichero);
 	//declaramos una variable auxiliar tipo string para ir guardando los datos
 	string aux;
 	int x; //para guardar los tipo int
@@ -58,8 +50,8 @@ bool Historial::LoadLinea(string fichero){
 	while(getline(entrada,aux,',')){
 	x=stoi(aux);
 	a.setNumeroLista(x);
-	getline(entrada,aux,'\n')
-	a.setFechaAlta(aux);
+	getline(entrada,aux,'\n');
+	a.setFecha(aux);
 
 	Linea_Historial_.push_back(a);
 
