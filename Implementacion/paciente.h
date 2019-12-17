@@ -15,7 +15,7 @@ private:
   list<Cita> citas_;
   list<Tratamiento> tratamientos_;
 public:
-  Paciente(string nombre, string apellidos, int idHistorialMedico, string fechaNacimiento = "", string seguroSalud = "", int direccionPostal = "", int telefono = "");
+  Paciente(string nombre, string apellidos, int idHistorialMedico, string fechaNacimiento = "", string seguroSalud = "", int direccionPostal = 0, int telefono = 0);
   inline string getApellidos() const {return apellidos_;}
   inline string getNombre() const {return nombre_;}
   inline int getDireccionPostal() const {return direccionPostal_;}
@@ -23,7 +23,7 @@ public:
   inline int getTelefono() const {return telefono_;}
   inline string getSeguroSalud() const {return seguroSalud_;}
   inline int getIdHistorialMedico() const {return idHistorialMedico_;}
-  inline list<Cita> getCitas() const {return citas_};
+  inline list<Cita> getCitas() const {return citas_;}
   inline list<Tratamiento> getTratamientos() const {return tratamientos_;}
   inline void setApellidos(string apellidos) {apellidos_ = apellidos;}
   inline void setNombre(string nombre) {nombre_ = nombre;}

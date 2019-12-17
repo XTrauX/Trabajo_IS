@@ -1,11 +1,11 @@
-#ifndef TRATAMIENTO_MEDICO_H
-#define TRATAMIENTO_MEDICO_H
+#ifndef TRATAMIENTO_H
+#define TRATAMIENTO_H
 
 #include <string>
 
 using namespace std;
 
-class tratamiento_medico{
+class Tratamiento{
 
 private:
 

@@ -17,12 +17,12 @@ Paciente::Paciente(string nombre, string apellidos, int idHistorialMedico, strin
   if(setDireccionPostal(direccionPostal)){
   }
   else{
-    direccionPostal_ = "";
+    direccionPostal_ = 0;
   }
   if(setTelefono(telefono)){
   }
   else{
-    telefono_ = "";
+    telefono_ = 0;
   }
 }
 
@@ -37,7 +37,7 @@ bool Paciente::setDireccionPostal(int direccionPostal){
 }
 
 bool Paciente::setFechaNacimiento(string fechaNacimiento){
-  if(cmpFechas(fechaNacimiento , getSysFecha()) == -1){
+  if(cmpFecha(fechaNacimiento , getSysFecha()) == -1){
     fechaNacimiento_ = fechaNacimiento;
     return true;
   }
@@ -81,15 +81,17 @@ void Paciente::addTratamiento(Tratamiento tratamiento){
 bool Paciente::modifyCita(Cita cita){
   if(loadCitas()){
     int n = cita.getIdCita();
-    if((n > 0) && (n <= citas_.size())){
+    if((n > 0) && (n <= (int)citas_.size())){
       list<Cita>::iterator it = citas_.begin();
       while(n!=1){
         it++;
         n--;
       }
-      it->swap(cita);
+      it->setFecha(cita.getFecha());
+      it->setHora(cita.getHora());
+      it->setDuracion(cita.getDuracion());
       saveCitas();
-      }
+      return true;
     }
     else{
       return false;
@@ -103,15 +105,20 @@ bool Paciente::modifyCita(Cita cita){
 bool Paciente::modifyTratamiento(Tratamiento tratamiento){
   if(loadTratamientos()){
     int n = tratamiento.getIdTratamiento();
-    if((n > 0) && (n <= tratamientos_.size())){
-      list<Cita>::iterator it = tratamientos_.begin();
+    if((n > 0) && (n <= (int)tratamientos_.size())){
+      list<Tratamiento>::iterator it = tratamientos_.begin();
       while(n!=1){
         it++;
         n--;
       }
-      it->swap(tratamiento);
+      it->setMedicamento(tratamiento.getMedicamento());
+      it->setConcentracion(tratamiento.getConcentracion());
+      it->setRegularidad(tratamiento.getRegularidad());
+      it->setFechaInicio(tratamiento.getFechaInicio());
+      it->setDuracion(tratamiento.getDuracion());
+      it->setNotas(tratamiento.getNotas());
       saveTratamientos();
-      }
+      return true;
     }
     else{
       return false;
@@ -124,8 +131,10 @@ bool Paciente::modifyTratamiento(Tratamiento tratamiento){
 
 bool Paciente::eraseCita(int n){
   if(loadCitas()){
-      if((n > 0) && (n <= citas_.size())){
-        citas_.remove_if([]{return getIdCita() == n;});
+      if((n > 0) && (n <= (int)citas_.size())){
+        for(list<Cita>::iterator it = citas_.begin() ; it != citas_.end() ; ++it){
+          citas_.erase(it);
+        }
         saveCitas();
         return true;
       }
@@ -140,8 +149,10 @@ bool Paciente::eraseCita(int n){
 
 bool Paciente::eraseTratamiento(int n){
   if(loadTratamientos()){
-      if((n > 0) && (n <= tratamientos_.size())){
-        tratamientos_.remove_if([]{return getIdTratamiento() == n;});
+      if((n > 0) && (n <= (int)tratamientos_.size())){
+        for(list<Tratamiento>::iterator it = tratamientos_.begin() ; it != tratamientos_.end() ; ++it){
+          tratamientos_.erase(it);
+        }
         saveTratamientos();
         return true;
       }

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class cita{
+class Cita{
 
 	private:
 		int Id_Cita_,Duracion_;
