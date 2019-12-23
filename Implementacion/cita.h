@@ -12,7 +12,7 @@ class Cita{
 		string fecha_,hora_;
 
 	public:
-		inline cita(int IdCita, int Duracion, string fecha, string hora) {Id_Cita_=IdCita; Duracion_=Duracion; fecha_=fecha; hora_=hora;};
+		inline Cita(int IdCita, int Duracion=0, string fecha="", string hora="") {Id_Cita_=IdCita; Duracion_=Duracion; fecha_=fecha; hora_=hora;};
 		inline int getIdCita() const {return Id_Cita_;};
 		inline int getDuracion() const {return Duracion_;};
 		inline string getFecha() const {return fecha_;};

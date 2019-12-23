@@ -15,16 +15,18 @@ class Historial{
 		list <Linea> Linea_Historial_;
 
 
-	public: 
+	public:
 
-		inline Historial(int id_Historial, string fecha_alta, list <Linea> Linea_Historial){id_Historial_=id_Historial; fecha_alta_=fecha_alta; Linea_Historial_=Linea_Historial;};
+		inline Historial(int id_Historial, string fecha_alta){id_Historial_=id_Historial; fecha_alta_=fecha_alta;};
+		inline void fsetFechaAlta(string fecha){fecha_alta_=fecha;};
 		inline int getIdHistorialMedico() const {return id_Historial_;};
 		inline string getFechaAlta() const {return fecha_alta_;};
 		inline list <Linea> getLinea() const {return Linea_Historial_;};
 		inline void setIdHistorialMedico(int id_Historial) {id_Historial_=id_Historial;};
 		bool setFechaAlta();
-		bool addLinea(Linea linea, string nombre, string apellidos);
-		bool LoadLinea(string fichero);
+		void addLinea(Linea linea);
+		bool LoadLinea();
+		void SaveLinea();
 };
 
 

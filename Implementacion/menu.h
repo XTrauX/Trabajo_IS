@@ -1,7 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-//WORK IN PROGRESS
 
 #include "paciente.h"
 #include <list>
@@ -16,13 +15,29 @@ private:
   list<Paciente> pacientes_;
   list<string> nombre_pacientes;
 
+  void Modificar_Paciente(Paciente &p);
+  void Modificar_Cita(Paciente &p);
+  void Modificar_Tratamiento(Paciente &p);
+  void Consultar_Paciente(Paciente &p);
+  bool Consultar_Lista_Pacientes();
+  void Consultar_Citas(Paciente &p);
+  void Consultar_Tratamientos(Paciente &p);
+  void Consultar_Historial(Paciente &p);
+  bool loadPacientes();
+  bool savePacientes();
+  bool erasePaciente(int n);
+  Paciente Buscar_Paciente();
+  bool Add_Paciente();
+  void Consultar_Citas_Diarias();
+  void menu_principal();
+  void menu_paciente();
+  void menu_mod_paciente();
+  void menu_mod_cita();
+  void menu_mod_tratamiento();
+
 public:
 
-  bool modificar_paciente();
-  void consultar_paciente();
-  bool consultar_lista_pacientes();
-  string buscar_paciente();
-  bool add_paciente();
+  void execute();
 
 };
 

@@ -17,7 +17,7 @@ class Linea{
 		inline int getNumeroLinea() const {return num_linea_;};
 		inline string getComentario() const {return comentario_;};
 		inline string getFecha() const {return fecha_;};
-		inline void setNumeroLista(int num_linea){num_linea_=num_linea;}; //pensar para hablarlo con MasterScrum
+		inline void setNumeroLinea(int num_linea){num_linea_=num_linea;}; //pensar para hablarlo con MasterScrum
 		inline void setComentario(string comentario) {comentario_=comentario;};
 		inline void setFecha(string fecha) {fecha_=fecha;};
 

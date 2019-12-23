@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Paciente::Paciente(string nombre, string apellidos, int idHistorialMedico, string fechaNacimiento, string seguroSalud, int direccionPostal, int telefono){
+Paciente::Paciente(string nombre, string apellidos, int idHistorialMedico, Historial h, string fechaNacimiento, string seguroSalud, int direccionPostal, int telefono):historial_(h){
   nombre_ = nombre;
   apellidos_ = apellidos;
   idHistorialMedico_ = idHistorialMedico;
@@ -130,39 +130,31 @@ bool Paciente::modifyTratamiento(Tratamiento tratamiento){
 }
 
 bool Paciente::eraseCita(int n){
+  int i=1;
   if(loadCitas()){
-      if((n > 0) && (n <= (int)citas_.size())){
-        for(list<Cita>::iterator it = citas_.begin() ; it != citas_.end() ; ++it){
-          citas_.erase(it);
-        }
+    for(list<Cita>::iterator it = citas_.begin() ; it != citas_.end() ; ++it){
+      if(i=n){
+        citas_.erase(it);
         saveCitas();
         return true;
       }
-      else{
-        return false;
-      }
+    }
   }
-  else{
-    return false;
-  }
+  return false;
 }
 
 bool Paciente::eraseTratamiento(int n){
+  int i=1;
   if(loadTratamientos()){
-      if((n > 0) && (n <= (int)tratamientos_.size())){
-        for(list<Tratamiento>::iterator it = tratamientos_.begin() ; it != tratamientos_.end() ; ++it){
-          tratamientos_.erase(it);
-        }
+    for(list<Tratamiento>::iterator it = tratamientos_.begin() ; it != tratamientos_.end() ; ++it){
+      if(i=n){
+        tratamientos_.erase(it);
         saveTratamientos();
         return true;
       }
-      else{
-        return false;
-      }
+    }
   }
-  else{
-    return false;
-  }
+  return false;
 }
 
 bool Paciente::loadCitas(){
@@ -170,7 +162,7 @@ bool Paciente::loadCitas(){
   ifstream f(doc);
   citas_.clear();
   if(f.is_open()){
-    Cita a;
+    Cita a(-1);
     string aux;
     while(getline(f, aux, ',')){
       a.setIdCita(stoi(aux));
@@ -222,6 +214,26 @@ bool Paciente::loadTratamientos(){
     return false;
   }
 }
+
+bool Paciente::loadHistorial(){
+  historial_.setIdHistorialMedico(getIdHistorialMedico());
+  bool ctrl=true;
+  ifstream f("historiales");
+  if(f.is_open()){
+    string aux;
+    while(getline(f, aux, ',')&&ctrl){
+      if(historial_.getIdHistorialMedico()==stoi(aux))
+        ctrl==false;
+      getline(f, aux, '\n');
+      historial_.fsetFechaAlta(aux);
+    }
+    if(!ctrl)
+      return true;
+  }
+    return false;
+
+}
+
 
 void Paciente::saveCitas(){
   string doc = "citas/" + nombre_ + " " + apellidos_ + ".txt";
