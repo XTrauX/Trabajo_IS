@@ -19,7 +19,7 @@ public:
 
   list<Cita> citas_;
   list<Tratamiento> tratamientos_;
-  Paciente(string nombre, string apellidos, int idHistorialMedico, Historial h, string fechaNacimiento = "", string seguroSalud = "", int direccionPostal = 0, int telefono = 0);
+  Paciente(string nombre, string apellidos, int idHistorialMedico, string fechaNacimiento = "", string seguroSalud = "", int direccionPostal = 0, int telefono = 0);
   inline string getApellidos() const {return apellidos_;};
   inline string getNombre() const {return nombre_;};
   inline int getDireccionPostal() const {return direccionPostal_;};

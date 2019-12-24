@@ -8,12 +8,18 @@
 
 using namespace std;
 
+struct Cita_dia{
+  string nombre_;
+  string apellidos_;
+  string hora_;
+};
+
 class Menu{
 
 private:
 
   list<Paciente> pacientes_;
-  list<string> nombre_pacientes;
+  list<Cita_dia> citas_diarias_;
 
   void Modificar_Paciente(Paciente &p);
   void Modificar_Cita(Paciente &p);

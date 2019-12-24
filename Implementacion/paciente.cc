@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Paciente::Paciente(string nombre, string apellidos, int idHistorialMedico, Historial h, string fechaNacimiento, string seguroSalud, int direccionPostal, int telefono):historial_(h){
+Paciente::Paciente(string nombre, string apellidos, int idHistorialMedico, string fechaNacimiento, string seguroSalud, int direccionPostal, int telefono){
   nombre_ = nombre;
   apellidos_ = apellidos;
   idHistorialMedico_ = idHistorialMedico;
@@ -158,6 +158,7 @@ bool Paciente::eraseTratamiento(int n){
 }
 
 bool Paciente::loadCitas(){
+  int x;
   string doc = "citas/" + nombre_ + " " + apellidos_ + ".txt";
   ifstream f(doc);
   citas_.clear();
@@ -165,13 +166,15 @@ bool Paciente::loadCitas(){
     Cita a(-1);
     string aux;
     while(getline(f, aux, ',')){
-      a.setIdCita(stoi(aux));
+      x=stoi(aux);
+      a.setIdCita(x);
       getline(f, aux, ',');
       a.setFecha(aux);
       getline(f, aux, ',');
       a.setHora(aux);
       getline(f, aux, '\n');
-      a.setDuracion(stoi(aux));
+      x=stoi(aux);
+      a.setDuracion(x);
 
       citas_.push_back(a);
     }
@@ -184,6 +187,7 @@ bool Paciente::loadCitas(){
 }
 
 bool Paciente::loadTratamientos(){
+  int x;
   string doc = "tratamientos/" + nombre_ + " " + apellidos_ + ".txt";
   ifstream f(doc);
   tratamientos_.clear();
@@ -191,17 +195,20 @@ bool Paciente::loadTratamientos(){
     Tratamiento a;
     string aux;
     while(getline(f, aux, ',')){
-      a.setIdTratamiento(stoi(aux));
+      x=stoi(aux);
+      a.setIdTratamiento(x);
       getline(f, aux, ',');
       a.setMedicamento(aux);
       getline(f, aux, ',');
       a.setConcentracion(stof(aux));
       getline(f, aux, ',');
-      a.setRegularidad(stoi(aux));
+      x=stoi(aux);
+      a.setRegularidad(x);
       getline(f, aux, ',');
       a.setFechaInicio(aux);
       getline(f, aux, ',');
-      a.setDuracion(stoi(aux));
+      x=stoi(aux);
+      a.setDuracion(x);
       getline(f, aux, '\n');
       a.setNotas(aux);
 
@@ -217,12 +224,14 @@ bool Paciente::loadTratamientos(){
 
 bool Paciente::loadHistorial(){
   historial_.setIdHistorialMedico(getIdHistorialMedico());
+  int x;
   bool ctrl=true;
   ifstream f("historiales");
   if(f.is_open()){
     string aux;
     while(getline(f, aux, ',')&&ctrl){
-      if(historial_.getIdHistorialMedico()==stoi(aux))
+      x=stoi(aux);
+      if(historial_.getIdHistorialMedico()==x)
         ctrl==false;
       getline(f, aux, '\n');
       historial_.fsetFechaAlta(aux);

@@ -17,7 +17,7 @@ class Historial{
 
 	public:
 
-		inline Historial(int id_Historial, string fecha_alta){id_Historial_=id_Historial; fecha_alta_=fecha_alta;};
+		inline Historial(int id_Historial=0, string fecha_alta=""){id_Historial_=id_Historial; fecha_alta_=fecha_alta;};
 		inline void fsetFechaAlta(string fecha){fecha_alta_=fecha;};
 		inline int getIdHistorialMedico() const {return id_Historial_;};
 		inline string getFechaAlta() const {return fecha_alta_;};
