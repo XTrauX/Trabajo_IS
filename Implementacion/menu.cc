@@ -5,46 +5,48 @@
 #include "historial_medico.h"
 #include "linea_medico.h"
 #include "fecha.h"
+#include <cstdio>
+#include <cstdlib>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
 void Menu::execute()
 {
-  int opcion;
+  string opcion;
   bool ctrl1=true, ctrl2, aux;
-  cout <<"holaaa"<<endl;
-
-  Paciente pac("AA","BB",-1);
-  cout <<"holaaa"<<endl;
-
+  Paciente pac("AA","BB",0);
   while(ctrl1)
   {
     ctrl2=true;
     menu_principal();
     cout << "Introduzca la opcion deseada: ";
     cin >> opcion;
-    switch (opcion) {
+    switch (stoi(opcion)) {
       case 1:
         Consultar_Citas_Diarias();
-        system("pause");
+
         break;
       case 2:
-        if(!Consultar_Lista_Pacientes())
-          cout << "No hay pacientes que mostrar." << endl;
+        Consultar_Lista_Pacientes();
         break;
       case 3:
         pac=Buscar_Paciente();
-        if(pac.getNombre()=="XX") break;
+        if(pac.getNombre()=="XX")
+        {
+          cout << "No se ha encontrado el paciente."<<endl;
+          break;
+        }
         while(ctrl2)
         {
           cout << "\t" << pac.getNombre() << " " << pac.getApellidos() << endl;
           menu_paciente();
           cout << "Introduzca la opcion deseada: ";
           cin >> opcion;
-          switch (opcion) {
+          switch (stoi(opcion)) {
             case 1:
               Consultar_Paciente(pac);
               break;
@@ -59,6 +61,8 @@ void Menu::execute()
               break;
             case 5:
               ctrl2=false;
+              break;
+            default:
               break;
           }
         }
@@ -77,16 +81,17 @@ void Menu::Consultar_Paciente(Paciente &p)
   char opcion;
   cout << "Datos de " << p.getNombre() << " " << p.getApellidos()
   << endl << "Fecha Nacimiento:\t" << p.getFechaNacimiento()
-  << endl << "Teléfono móvil:\t" << p.getTelefono()
+  << endl << "Teléfono móvil:\t\t" << p.getTelefono()
   << endl << "Dirección postal:\t" << p.getDireccionPostal()
   << endl << "Seguro de Salud:\t" << p.getSeguroSalud()
   << endl << "--------------------------------"
   << endl << "¿Desea modificar algun dato? (y/n)"
-  << endl << "--------------------------------";
+  << endl << "--------------------------------"
+  << endl;
   cin >> opcion;
   if(opcion=='y')
     Modificar_Paciente(p);
-  system("pause");
+
 }
 void Menu::Consultar_Citas(Paciente &p)
 {
@@ -100,10 +105,12 @@ void Menu::Consultar_Citas(Paciente &p)
   }
   cout << "--------------------------------"
   << endl << "¿Desea modificar o añadir alguna cita? (y/n)"
-  << endl << "--------------------------------";
+  << endl << "--------------------------------"
+  << endl;
+  cin >> opcion;
   if(opcion=='y')
     Modificar_Cita(p);
-  system("pause");
+
 }
 void Menu::Consultar_Tratamientos(Paciente &p)
 {
@@ -120,24 +127,26 @@ void Menu::Consultar_Tratamientos(Paciente &p)
   }
   cout << "--------------------------------"
   << endl << "¿Desea modificar o añadir algun tratamiento? (y/n)"
-  << endl << "--------------------------------";
+  << endl << "--------------------------------"
+  << endl;
+  cin >> opcion;
   if(opcion=='y')
     Modificar_Tratamiento(p);
-  system("pause");
+
 }
 void Menu::Consultar_Historial(Paciente &p)
 {
   p.loadHistorial();
   Historial h(0,"");
-  list<Linea> l=h.getLinea();
   h=p.getHistorial();
-  cout << "Historial médico de " << p.getNombre() << " " << p.getApellidos() << endl << "Fecha de alta: " << h.getFechaAlta();
+  list<Linea> l=h.getLinea();
+  cout << "Historial médico de " << p.getNombre() << " " << p.getApellidos() << endl << "Fecha de alta: " << h.getFechaAlta() << endl;
   for(list<Linea>::iterator it = l.begin(); it!= l.end(); ++it)
   {
     cout << it->getNumeroLinea() << " " << it->getFecha()
     << endl << "\t" << it->getComentario() <<endl;
   }
-  system("pause");
+
 }
 bool Menu::Consultar_Lista_Pacientes()
 {
@@ -146,31 +155,34 @@ bool Menu::Consultar_Lista_Pacientes()
   {
     for(list<Paciente>::iterator it = pacientes_.begin(); it != pacientes_.end(); ++it)
     {
-      cout << it->getNombre() << " " << it->getApellidos() << "\tTelefono: " << it->getTelefono();
+      cout << it->getNombre() << " " << it->getApellidos() << "\tTelefono: " << it->getTelefono()<<endl;
     }
   }
   else
     cout << "No hay pacientes en la base de datos." << endl;
   cout << "------------------------" << endl;
-  system("pause");
+
 }
 Paciente Menu::Buscar_Paciente()
 {
   string nombre, apellido1, apellido2, apellidos;
-  Paciente error("XX","YY",-1);
-  cout << "Introduzca el primer nombre del paciente a buscar: ";
-  cin >> nombre;
-  cout << "Introduzca los apellidos del paciente"
-  << endl << "Primer apellido: ";
-  cin >> apellido1;
-  cout << "Segundo apellido: ";
-  cin >> apellido2;
-  apellidos= apellido1 + " " + apellido2;
-  cout << "Buscando ..." << endl;
-  for(list<Paciente>::iterator it = pacientes_.begin(); it != pacientes_.end(); ++it)
+  Paciente error("XX","YY",0);
+  if(loadPacientes())
   {
-    if(nombre==it->getNombre()&&apellidos==it->getApellidos())
-      return *it;
+    cout << "Introduzca el primer nombre del paciente a buscar: ";
+    cin >> nombre;
+    cout << "Introduzca los apellidos del paciente"
+    << endl << "Primer apellido: ";
+    cin >> apellido1;
+    cout << "Segundo apellido: ";
+    cin >> apellido2;
+    apellidos= apellido1 + " " + apellido2;
+    cout << "Buscando ..." << endl;
+    for(list<Paciente>::iterator it = pacientes_.begin(); it != pacientes_.end(); ++it)
+    {
+      if(nombre==it->getNombre()&&apellidos==it->getApellidos())
+        return *it;
+      }
   }
   return error;
 }
@@ -227,6 +239,8 @@ void Menu::Modificar_Paciente(Paciente &p)
         it->saveCitas();
         it->saveTratamientos();
         pacientes_.erase(it);
+        savePacientes();
+        execute();
       }
       else
         *it=aux;
@@ -240,7 +254,7 @@ void Menu::Modificar_Cita(Paciente &p)
   int opcion, x;
   string aux;
   bool ctrl=true;
-  Cita c(-1);
+  Cita c(0);
   while(ctrl)
   {
     menu_mod_cita();
@@ -288,7 +302,7 @@ void Menu::Modificar_Cita(Paciente &p)
         break;
     }
   }
-  system("pause");
+
 }
 void Menu::Modificar_Tratamiento(Paciente &p)
 {
@@ -367,11 +381,12 @@ void Menu::Modificar_Tratamiento(Paciente &p)
 bool Menu::loadPacientes()
 {
   bool ctrl=true;
+  int x;
   ifstream f("pacientes");
   pacientes_.clear();
   if(f.is_open())
   {
-    Paciente p("AA","BB",-1);
+    Paciente p("AA","BB",0);
     string aux;
     while(getline(f, aux, ' '))
     {
@@ -408,6 +423,7 @@ bool Menu::savePacientes()
   {
     f << it->getNombre() << " " << it->getApellidos() << "," << it->getFechaNacimiento() << "," << it->getSeguroSalud() << "," << it->getDireccionPostal() << "," << it->getTelefono() << "," << it->getIdHistorialMedico() << "\n";
   }
+  f.close();
 }
 bool Menu::erasePaciente(const int opcion)
 {
@@ -428,7 +444,8 @@ bool Menu::erasePaciente(const int opcion)
 }
 bool Menu::Add_Paciente()
 {
-  Paciente p("XX","YY",-1);
+  Paciente p("XX","YY",0);
+  int x;
   bool ctrl=true;
   string aux, aux2;
   cout << "Introduzca el primer nombre del paciente: ";
@@ -442,6 +459,11 @@ bool Menu::Add_Paciente()
   cout << "Fecha de nacimiento(dd/mm/yyyy): ";
   cin >> aux;
   ctrl=ctrl&&p.setFechaNacimiento(aux);
+  if(!ctrl)
+  {
+    cout << "Error al introducir la fecha de nacimiento." << endl;
+    return false;
+  }
   cout << "Seguro de salud: ";
   cin >> aux;
   p.setSeguroSalud(aux);
@@ -449,10 +471,20 @@ bool Menu::Add_Paciente()
   cin >> aux;
   x=stoi(aux);
   ctrl=ctrl&&p.setDireccionPostal(x);
+  if(!ctrl)
+  {
+    cout << "Error al introducir la dirección postal." << endl;
+    return false;
+  }
   cout << "Teléfono móvil: ";
   cin >> aux;
   x=stoi(aux);
   ctrl=ctrl&&p.setTelefono(x);
+  if(!ctrl)
+  {
+    cout << "Error al introducir el teléfono." << endl;
+    return false;
+  }
   if(!loadPacientes())
   {
     p.setIdHistorialMedico(1);
@@ -463,14 +495,20 @@ bool Menu::Add_Paciente()
     --it;
     p.setIdHistorialMedico(it->getIdHistorialMedico()+1);
   }
-  if(!ctrl)
+  ifstream g("historiales");
+  aux="";
+  while(getline(g,aux2,'\n'))
   {
-    cout << "Error al introducir algun dato." << endl;
-    return false;
+    aux+=aux2+"\n";
   }
+  g.close();
+  ofstream f("historiales");
+  f << aux;
+  f << p.getIdHistorialMedico() << "," << getSysFecha() << "\n";
+  f.close();
   pacientes_.push_back(p);
   savePacientes();
-
+  cout << "Paciente introducido correctamente." << endl;
 }
 void Menu::Consultar_Citas_Diarias()
 {
@@ -479,7 +517,7 @@ void Menu::Consultar_Citas_Diarias()
     if(citas_diarias_.empty())
     {
       list<Cita> c;
-      Paciente p("AA","BB",-1);
+      Paciente p("AA","BB",0);
       Cita_dia cd;
       for(list<Paciente>::iterator it = pacientes_.begin(); it != pacientes_.end();++it)
       {
@@ -497,7 +535,7 @@ void Menu::Consultar_Citas_Diarias()
           }
         }
       }
-      cout << "Citas del día" << getSysFecha() << " :" << endl;
+      cout << "Citas del día " << getSysFecha() << " :" << endl;
       for(list<Cita_dia>::iterator it3=citas_diarias_.begin();it3 != citas_diarias_.end(); ++it3)
       {
         cout << "Hora: " << it3->hora_ << "\t" << it3->nombre_ << " " << it3->apellidos_ << endl;
@@ -526,7 +564,8 @@ void Menu::menu_paciente()
   << endl << "2.\tConsultar citas."
   << endl << "3.\tConsultar tratamientos."
   << endl << "4.\tConsultar historial médico."
-  << endl << "5.\tAtras.";
+  << endl << "5.\tAtras."
+  << endl;
 }
 void Menu::menu_mod_paciente()
 {

@@ -1,6 +1,7 @@
 #include "paciente.h"
 #include "fecha.h"
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -163,7 +164,7 @@ bool Paciente::loadCitas(){
   ifstream f(doc);
   citas_.clear();
   if(f.is_open()){
-    Cita a(-1);
+    Cita a(0);
     string aux;
     while(getline(f, aux, ',')){
       x=stoi(aux);
@@ -242,7 +243,6 @@ bool Paciente::loadHistorial(){
     return false;
 
 }
-
 
 void Paciente::saveCitas(){
   string doc = "citas/" + nombre_ + " " + apellidos_ + ".txt";

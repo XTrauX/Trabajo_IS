@@ -24,7 +24,7 @@ string getSysFecha()
 int cmpFecha(string const &fecha1, string const &fecha2)
 {
   int day1, day2;
-  day1=stoi(fecha1.substr(0,2))+stoi(fecha1.substr(3,2))+stoi(fecha1.substr(6,4));
-  day2=stoi(fecha2.substr(0,2))+stoi(fecha2.substr(3,2))+stoi(fecha2.substr(6,4));
+  day1=stoi(fecha1.substr(0,2))+stoi(fecha1.substr(3,2))*30+stoi(fecha1.substr(6,4))*365;
+  day2=stoi(fecha2.substr(0,2))+stoi(fecha2.substr(3,2))*30+stoi(fecha2.substr(6,4))*365;
   return day1==day2?0:(day1<day2?(-1):1);
 }

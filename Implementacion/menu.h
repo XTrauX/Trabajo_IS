@@ -31,6 +31,7 @@ private:
   void Consultar_Historial(Paciente &p);
   bool loadPacientes();
   bool savePacientes();
+  bool saveHistoriales();
   bool erasePaciente(int n);
   Paciente Buscar_Paciente();
   bool Add_Paciente();
