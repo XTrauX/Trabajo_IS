@@ -144,10 +144,12 @@ void Menu::Consultar_Tratamientos(Paciente &p)
 }
 void Menu::Consultar_Historial(Paciente &p)
 {
-  string opcion;
+  char opcion;
+  string aux;
   p.loadHistorial();
   Historial h;
   h=p.getHistorial();
+  h.LoadLinea();
   list<Linea> l=h.getLinea();
   cout << "Historial médico de " << p.getNombre() << " " << p.getApellidos() << endl << "Fecha de alta: " << h.getFechaAlta() << endl;
   for(list<Linea>::iterator it = l.begin(); it!= l.end(); ++it)
@@ -162,6 +164,13 @@ void Menu::Consultar_Historial(Paciente &p)
   cin >> opcion;
   if(opcion=='y')
   {
+    Linea laux(0);
+    cout << "Introduzca la una observación del paciente"
+    << endl;
+    cin.ignore();
+    getline(cin,aux);
+    laux.setComentario(aux);
+    h.addLinea(laux);
 
   }
 }

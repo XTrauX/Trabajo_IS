@@ -24,6 +24,7 @@ void Historial::addLinea(Linea linea){
 	}
 	else
 		linea.setNumeroLinea(1);
+	linea.setFecha(getSysFecha());
 	Linea_Historial_.push_back(linea);
 	SaveLinea();
 }
