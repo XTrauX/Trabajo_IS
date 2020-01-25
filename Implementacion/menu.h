@@ -41,6 +41,7 @@ private:
   void menu_mod_paciente();
   void menu_mod_cita();
   void menu_mod_tratamiento();
+  //bool cmpHora(const Cita_dia &first, const Cita_dia &second);
 
 public:
 

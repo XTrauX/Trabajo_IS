@@ -14,6 +14,13 @@
 
 using namespace std;
 
+bool cmpHora(const Cita_dia &first, const Cita_dia &second)
+{
+  int hora1, hora2;
+  hora1=stoi(first.hora_.substr(0,2))*60+stoi(first.hora_.substr(3,2));
+  hora2=stoi(second.hora_.substr(0,2))*60+stoi(second.hora_.substr(3,2));
+  return hora1<=hora2?true:false;
+}
 void Menu::execute()
 {
   string opcion;
@@ -78,6 +85,7 @@ void Menu::execute()
 }
 void Menu::Consultar_Paciente(Paciente &p)
 {
+  loadPacientes();
   char opcion;
   cout << "Datos de " << p.getNombre() << " " << p.getApellidos()
   << endl << "Fecha Nacimiento:\t" << p.getFechaNacimiento()
@@ -136,8 +144,9 @@ void Menu::Consultar_Tratamientos(Paciente &p)
 }
 void Menu::Consultar_Historial(Paciente &p)
 {
+  string opcion;
   p.loadHistorial();
-  Historial h(0,"");
+  Historial h;
   h=p.getHistorial();
   list<Linea> l=h.getLinea();
   cout << "Historial médico de " << p.getNombre() << " " << p.getApellidos() << endl << "Fecha de alta: " << h.getFechaAlta() << endl;
@@ -146,7 +155,15 @@ void Menu::Consultar_Historial(Paciente &p)
     cout << it->getNumeroLinea() << " " << it->getFecha()
     << endl << "\t" << it->getComentario() <<endl;
   }
+  cout << "--------------------------------"
+  << endl << "¿Desea añadir alguna linea de historial? (y/n)"
+  << endl << "--------------------------------"
+  << endl;
+  cin >> opcion;
+  if(opcion=='y')
+  {
 
+  }
 }
 bool Menu::Consultar_Lista_Pacientes()
 {
@@ -244,6 +261,7 @@ void Menu::Modificar_Paciente(Paciente &p)
       }
       else
         *it=aux;
+        p=aux;
       break;
     }
   }
@@ -268,6 +286,7 @@ void Menu::Modificar_Cita(Paciente &p)
         cout << "Introduzca la fecha de la cita (dd/mm/yyyy): ";
         cin >> aux;
         c.setFecha(aux);
+        if(cmpFecha(aux,getSysFecha())==0) citas_diarias_.clear();
         cout << "Introduzca la hora de la cita (hh:mm): ";
         cin >> aux;
         c.setHora(aux);
@@ -281,6 +300,7 @@ void Menu::Modificar_Cita(Paciente &p)
         cout << "Introduzca la fecha de la cita (dd/mm/yyyy): ";
         cin >> aux;
         c.setFecha(aux);
+        if(cmpFecha(aux,getSysFecha())==0) citas_diarias_.clear();
         cout << "Introduzca la hora de la cita (hh:mm): ";
         cin >> aux;
         c.setHora(aux);
@@ -338,7 +358,8 @@ void Menu::Modificar_Tratamiento(Paciente &p)
         x=stoi(aux);
         t.setDuracion(x);
         cout << "Introduzca alguna nota adicional: ";
-        cin >> aux;
+        cin.ignore();
+        getline(cin,aux);
         t.setNotas(aux);
         p.modifyTratamiento(t);
         break;
@@ -361,7 +382,8 @@ void Menu::Modificar_Tratamiento(Paciente &p)
         x=stoi(aux);
         t.setDuracion(x);
         cout << "Introduzca alguna nota adicional: ";
-        cin >> aux;
+        cin.ignore();
+        getline(cin,aux);
         t.setNotas(aux);
         p.addTratamiento(t);
         break;
@@ -485,7 +507,7 @@ bool Menu::Add_Paciente()
     cout << "Error al introducir el teléfono." << endl;
     return false;
   }
-  if(!loadPacientes())
+  if(!loadPacientes() || pacientes_.empty())
   {
     p.setIdHistorialMedico(1);
   }
@@ -535,6 +557,7 @@ void Menu::Consultar_Citas_Diarias()
           }
         }
       }
+      citas_diarias_.sort(cmpHora);
       cout << "Citas del día " << getSysFecha() << " :" << endl;
       for(list<Cita_dia>::iterator it3=citas_diarias_.begin();it3 != citas_diarias_.end(); ++it3)
       {
@@ -560,34 +583,45 @@ void Menu::menu_principal()
 }
 void Menu::menu_paciente()
 {
-  cout << "1.\tConsultar datos personales."
+  cout << "\t-----------"
+  << endl << "1.\tConsultar datos personales."
   << endl << "2.\tConsultar citas."
   << endl << "3.\tConsultar tratamientos."
   << endl << "4.\tConsultar historial médico."
   << endl << "5.\tAtras."
+  << endl << "\t-----------"
   << endl;
 }
 void Menu::menu_mod_paciente()
 {
-  cout << "1.\tCambiar Teléfono móvil."
+  cout << "\t-----------"
+  << endl << "1.\tCambiar Teléfono móvil."
   << endl << "2.\tCambiar Dirección postal."
   << endl << "3.\tCambiar Seguro de salud."
   << endl << "4.\tEliminar paciente."
-  << endl << "5.\tAtras." << endl;
+  << endl << "5.\tAtras."
+  << endl << "\t-----------"
+  << endl;
 }
 void Menu::menu_mod_cita()
 {
-  cout << "Elija la opcion que desea: "
+  cout << "\t-----------"
+  << endl << "Elija la opcion que desea: "
   << endl << "1.\tModificar cita."
   << endl << "2.\tAñadir cita."
   << endl << "3.\tEliminar cita."
-  << endl << "4.\tAtras." << endl;
+  << endl << "4.\tAtras."
+  << endl << "\t-----------"
+  << endl;
 }
 void Menu::menu_mod_tratamiento()
 {
-  cout << "Elija la opcion que desea: "
+  cout << "\t-----------"
+  << endl << "Elija la opcion que desea: "
   << endl << "1.\tModificar tratamiento."
   << endl << "2.\tAñadir tratamiento."
   << endl << "3.\tEliminar tratamiento."
-  << endl << "4.\tAtras." << endl;
+  << endl << "4.\tAtras."
+  << endl << "\t-----------"
+  << endl;
 }

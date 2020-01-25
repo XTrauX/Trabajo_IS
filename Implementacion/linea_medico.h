@@ -13,7 +13,7 @@ class Linea{
 		string comentario_, fecha_;
 
 	public:
-		inline Linea(int num_linea,string comentario="", string fecha="00/00/0000") {num_linea_=num_linea; comentario_=comentario; fecha_=fecha;};
+		inline Linea(int num_linea,string comentario="", string fecha="99/99/9999") {num_linea_=num_linea; comentario_=comentario; fecha_=fecha;};
 		inline int getNumeroLinea() const {return num_linea_;};
 		inline string getComentario() const {return comentario_;};
 		inline string getFecha() const {return fecha_;};

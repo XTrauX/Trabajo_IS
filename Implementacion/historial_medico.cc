@@ -55,13 +55,13 @@ bool Historial::LoadLinea(){
 	entrada.close();
 	return true;
 }
-void Historial::SaveLinea()
-{
+void Historial::SaveLinea(){
 	string fichero1= "lineas/" + to_string(id_Historial_) + ".txt";
-
+	int num=1;
 	ofstream f(fichero1);
 	for(list<Linea>::iterator it= Linea_Historial_.begin(); it != Linea_Historial_.end(); ++it)
 	{
-		f << it->getNumeroLinea() << "," << it->getFecha() << "," << it->getComentario() << "\n";
+		f << num << "," << it->getFecha() << "," << it->getComentario() << "\n";
+		num++;
 	}
 }

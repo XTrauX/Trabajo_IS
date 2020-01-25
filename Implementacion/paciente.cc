@@ -134,11 +134,12 @@ bool Paciente::eraseCita(int n){
   int i=1;
   if(loadCitas()){
     for(list<Cita>::iterator it = citas_.begin() ; it != citas_.end() ; ++it){
-      if(i=n){
+      if(i==n){
         citas_.erase(it);
         saveCitas();
         return true;
       }
+      i++;
     }
   }
   return false;
@@ -148,11 +149,12 @@ bool Paciente::eraseTratamiento(int n){
   int i=1;
   if(loadTratamientos()){
     for(list<Tratamiento>::iterator it = tratamientos_.begin() ; it != tratamientos_.end() ; ++it){
-      if(i=n){
+      if(i==n){
         tratamientos_.erase(it);
         saveTratamientos();
         return true;
       }
+      i++;
     }
   }
   return false;
@@ -233,9 +235,13 @@ bool Paciente::loadHistorial(){
     while(getline(f, aux, ',')&&ctrl){
       x=stoi(aux);
       if(historial_.getIdHistorialMedico()==x)
+      {
         ctrl==false;
+        getline(f, aux, '\n');
+        historial_.fsetFechaAlta(aux);
+      }
       getline(f, aux, '\n');
-      historial_.fsetFechaAlta(aux);
+
     }
     if(!ctrl)
       return true;
