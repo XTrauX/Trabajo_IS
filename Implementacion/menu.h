@@ -32,7 +32,6 @@ private:
   bool loadPacientes();
   bool savePacientes();
   bool saveHistoriales();
-  bool erasePaciente(int n);
   Paciente Buscar_Paciente();
   bool Add_Paciente();
   void Consultar_Citas_Diarias();
